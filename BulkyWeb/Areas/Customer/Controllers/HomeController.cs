@@ -50,21 +50,32 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
 
-            if(cartFromDb != null)
+            if(shoppingCart.Count <= 0)
             {
-                cartFromDb.Count += shoppingCart.Count;
-                _unitOfWork.ShoppingCart.Update(cartFromDb);
+                TempData["error"] = "Кrror occurred ";
+                return Redirect(nameof(Index));
             }
             else
             {
-                _unitOfWork.ShoppingCart.Add(shoppingCart);
-                
+                if (cartFromDb != null)
+                {
+                    cartFromDb.Count += shoppingCart.Count;
+                    _unitOfWork.ShoppingCart.Update(cartFromDb);
+                }
+                else
+                {
+                    _unitOfWork.ShoppingCart.Add(shoppingCart);
+
+                }
+
+                TempData["success"] = "Card updated successfully";
+                _unitOfWork.Save();
+
+                return Redirect(nameof(Index));
             }
 
-            TempData["success"] = "Card updated succeessfully";
-            _unitOfWork.Save();
 
-            return Redirect(nameof(Index));
+          
         }
 
         public IActionResult Privacy()
