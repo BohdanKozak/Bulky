@@ -35,8 +35,6 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 ProductId = productId
             };
 
-
-
             return View(cart);
         }
 
@@ -45,14 +43,16 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         public IActionResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
+
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             shoppingCart.ApplicationUserId = userId;
 
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
 
             if(shoppingCart.Count <= 0)
             {
-                TempData["error"] = "Кrror occurred ";
+                TempData["error"] = "Error occurred ";
                 return Redirect(nameof(Index));
             }
             else
@@ -71,11 +71,9 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 TempData["success"] = "Card updated successfully";
                 _unitOfWork.Save();
 
-                return Redirect(nameof(Index));
+                return Redirect("Index");
             }
 
-
-          
         }
 
         public IActionResult Privacy()

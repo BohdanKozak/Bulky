@@ -30,7 +30,7 @@
 									<label>Name</label>
 								</div>
 								<div class="col-9">
-									<input asp-for="OrderHeader.Name" class="form-control" />
+									<input asp-for="OrderHeader.Name" maxlength="15"  class="form-control" />
 									<span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
 								</div>
 							</div>
@@ -39,7 +39,7 @@
 									<label>Phone</label>
 								</div>
 								<div class="col-9">
-									<input asp-for="OrderHeader.PhoneNumber" class="form-control" />
+									<input asp-for="OrderHeader.PhoneNumber" maxlength="10" class="form-control" />
 									<span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
 								</div>
 							</div>
