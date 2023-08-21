@@ -16,6 +16,8 @@ namespace BulkyBook.Models
         [Required]
         public string Name { get; set; }
 
+
+
         public string? StreetAddress { get; set; }
         public string? City { get; set; }
         public string? State { get; set; }
@@ -25,5 +27,9 @@ namespace BulkyBook.Models
         [ForeignKey("CompanyId")]
         [ValidateNever]
         public Company Company { get; set; }
+
+
+        [ValidateNever]
+        public string ImageUrl { get; set; }
     }   
 }

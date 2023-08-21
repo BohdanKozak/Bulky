@@ -11,15 +11,17 @@ namespace BulkyBook.Models
 {
     public class ShoppingCart   
     {
+        [ValidateNever]
         public int Id { get; set; }
-
+        [ValidateNever]
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         [ValidateNever]
         public Product Product { get; set; }
         [Range(1,1000, ErrorMessage = "Please enter a value between 1 and 1000")]
+        [ValidateNever]
         public int Count { get; set; }
-
+        [ValidateNever]
         public string ApplicationUserId { get; set; }
 
         [ForeignKey("ApplicationUserId")]

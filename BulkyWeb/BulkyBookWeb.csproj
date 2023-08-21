@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\icon\" />
     <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 

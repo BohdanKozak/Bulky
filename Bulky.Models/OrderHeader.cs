@@ -11,25 +11,38 @@ namespace BulkyBook.Models
 {
     public class OrderHeader
     {
+        [ValidateNever]
         public int Id { get; set; }
+
+
+        [ValidateNever]
         public string ApplicationUserId { get; set; }
         [ForeignKey(nameof(ApplicationUserId))]
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
 
-        public DateTime OrderDate { get; set; }
-        public DateTime ShippingDate { get; set; }
-        public double OrderTotal { get; set; }
 
+
+        [ValidateNever]
+        public DateTime OrderDate { get; set; }
+        [ValidateNever]
+        public DateTime ShippingDate { get; set; }
+        [ValidateNever]
+        public double OrderTotal { get; set; }
+        [ValidateNever]
         public string? OrderStatus { get; set; }
+        [ValidateNever]
         public string? PaymentStatus { get; set; }
+        [ValidateNever]
         public string? TrackingNumber { get; set; }
         public string? Carrier { get; set; }
-
+        [ValidateNever]
         public DateTime PaymentDate { get; set; }
+        [ValidateNever]
         public DateOnly PaymentDueDate { get; set; }
-
-        public string? SessionId { get; set; }  
+        [ValidateNever]
+        public string? SessionId { get; set; }
+        [ValidateNever]
         public string? PaymentIntentId { get; set; }
 
         [Required]
