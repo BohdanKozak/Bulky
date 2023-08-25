@@ -75,7 +75,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         }
         [HttpPost]
         [ActionName("Summary")]
-        public IActionResult SummaryPost(ShoppingCartVM shoppingCartVM)
+        public IActionResult SummaryPost()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -182,15 +182,13 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 
 
                 }
-
+                
 
                 return RedirectToAction(nameof(OrderConfirmation), new { id = ShoppingCartVM.OrderHeader.Id });
             }
             else
             {
-
-
-
+                
                 return Index();
             }
 
