@@ -142,7 +142,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                .GetAll(u => u.OrderHeaderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
 
             StripeConfiguration.ApiKey = "sk_test_51Ngmr8Cm0pEsqbyjNGjLf6xrFi4g56gHJdqQ6g3Y9nHvI5BZoqOzEMeGCb08qk7aoZ2R9l9vrIExdfZoZ9BMZj5S00lBlzmJSX";
-            var domain = "https://localhost:7169/";
+            var domain = Request.Scheme + "//" + Request.Host.Value;
             var options = new SessionCreateOptions
             {
                 SuccessUrl = domain + $"admin/order/PaymentConfirmation?OrderHeaderId={OrderVM.OrderHeader.Id}",
