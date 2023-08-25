@@ -39,7 +39,7 @@ namespace BulkyBook.Models
         [ValidateNever]
         public DateTime PaymentDate { get; set; }
         [ValidateNever]
-        public DateOnly PaymentDueDate { get; set; }
+        public DateTime PaymentDueDate { get; set; }
         [ValidateNever]
         public string? SessionId { get; set; }
         [ValidateNever]
