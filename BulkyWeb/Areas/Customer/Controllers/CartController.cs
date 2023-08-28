@@ -34,9 +34,13 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 includeProperties: "Product"),
                 OrderHeader = new()
             };
+            IEnumerable<ProductImage> productImages = _unitOfWork.ProductImage.GetAll();
+
+
 
             foreach (var cart in ShoppingCartVM.ShoppingCartList)
             {
+                cart.Product.ProductImage = productImages.Where(u => u.ProductId == cart.Product.Id).ToList();
                 cart.Price = GetPriceBasedOnQuantity(cart);
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
             }
@@ -142,7 +146,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 {
                     //STRIKE LOGIC
                     StripeConfiguration.ApiKey = "sk_test_51Ngmr8Cm0pEsqbyjNGjLf6xrFi4g56gHJdqQ6g3Y9nHvI5BZoqOzEMeGCb08qk7aoZ2R9l9vrIExdfZoZ9BMZj5S00lBlzmJSX";
-                    var domain = Request.Scheme + "://" + Request.Host.Value;
+                    var domain = Request.Scheme + "://" + Request.Host.Value + "/";
                     var options = new SessionCreateOptions
                     {
                         SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",

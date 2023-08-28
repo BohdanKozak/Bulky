@@ -30,10 +30,10 @@ namespace BulkyBook.Models
 
 
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
 
         [NotMapped]
-        public string Role { get; set; }
+        public string? Role { get; set; }
     }   
 }

@@ -16,10 +16,10 @@ namespace BulkyBook.Models
 
 
         [ValidateNever]
-        public string ApplicationUserId { get; set; }
+        public string? ApplicationUserId { get; set; }
         [ForeignKey(nameof(ApplicationUserId))]
         [ValidateNever]
-        public ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser? ApplicationUser { get; set; }
 
 
 
@@ -56,6 +56,6 @@ namespace BulkyBook.Models
         [Required]
         public string? PostalCode { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }
