@@ -1,5 +1,32 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+.review-list {
+    max-height: 450px; /* Встановіть висоту, яку ви вважаєте за потрібну */
+    overflow-y: auto;
+}
+.review-card {
+    margin-bottom: 20px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.review-title {
+    color: #007bff;
+}
+
+.review-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.review-user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
 
 .divider-text:before,
 .divider-text:after {

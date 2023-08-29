@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model Product
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<form method="post">
+    <div class="card shadow border-0 mt-4 mb-5">
+        <div class="container mt-5">
+            <h1 class="text-center">Відгуки для книги: @Model.Title</h1>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="review-list">
+                       
+                            @foreach (var review in Model.Review)
+                            {
+                                <div class="card review-card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="@review.ApplicationUser.ImageUrl" alt="User 1" class="review-user-photo">
+                                            <div>
+                                                <h5 class="card-title review-title">@review.ApplicationUser.Name</h5>
+                                                <p class="review-date">@review.DateOfReview.ToShortDateString()</p>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">@review.Text</p>
+                                        @if (User.IsInRole(SD.Role_Admin) || UserManager.GetUserId(User) == review.ApplicationUser.Id)
+                                        {
+                                            <a asp-action="DeleteReview" class="btn btn-danger" asp-route-reviewId="@review.Id">
+                                                <i class="bi bi-trash-fill"></i>Delete
+                                            </a>
+                                        }
+
+                                    </div>
+
+                                </div>
+                            }
+                        
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pb-1">
+                            
+                            <textarea name="reviewText" type="text" class="form-control"></textarea>
+                            <button type="submit" asp-route-productId="@Model.Id" asp-action="InputReview" class="btn btn-warning form-control my-1">Write Review</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

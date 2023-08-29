@@ -36,6 +36,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -44,7 +45,8 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _roleManager = roleManager;
@@ -54,6 +56,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -121,6 +124,9 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
             public string? PostalCode { get; set; }
             public string? PhoneNumber { get; set; }
             public int? CompanyId { get; set; }
+
+            public string? ImageUrl { get; set; }
+
             [ValidateNever]
             public IEnumerable<SelectListItem> CompanyList { get; set; }    
         }
@@ -151,6 +157,8 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+           
+           
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
@@ -166,7 +174,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
                 user.State = Input.State;
-                
+                user.ImageUrl = "http://placehold.co/500x600/png";
 
 
                 if (Input.Role == SD.Role_Company)

@@ -46,8 +46,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
             var orderHeaderFromDb = _unitOfWork.OrderHeader.Get(u => u.Id == OrderVM.OrderHeader.Id);
 
-
-
             orderHeaderFromDb.Name = OrderVM.OrderHeader.Name;
             orderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
             orderHeaderFromDb.StreetAddress = OrderVM.OrderHeader.StreetAddress;
